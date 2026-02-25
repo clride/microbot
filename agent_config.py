@@ -1,4 +1,8 @@
-MODEL = "arcee-ai/trinity-large-preview:free"
+PROVIDER = "<insert your API provider here>" # valid providers: "openai", "openrouter"
+
+API_KEY = "<insert your API Key here>"
+
+MODEL = "<insert your model here>" # eg. "arcee-ai/trinity-large-preview:free", "gpt-4o-mini"
 
 SYSTEM_PROMPT = """
 You can execute tools using this syntax:
