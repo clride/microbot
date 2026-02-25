@@ -2,7 +2,7 @@ import os
 
 from openrouter import OpenRouter
 from dotenv import load_dotenv
-from agent_config import MODEL, SYSTEM_PROMPT
+from agent.agent_config import MODEL, SYSTEM_PROMPT
 import commands.basic_commands
 import re
 
