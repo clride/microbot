@@ -10,10 +10,6 @@ import re
 
 load_dotenv()
 
-# wtf willst du mir damit sagen?:
-# API Key must be stored in a .env file
-# as API_KEY=
-
 match PROVIDER:
     case "openai":
         client = OpenAI(api_key=API_KEY)
