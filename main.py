@@ -1,14 +1,14 @@
-import os
-from unittest import case # was das david?
-
 from openai import OpenAI
 from openrouter import OpenRouter
 from dotenv import load_dotenv
-from agent_config import MODEL, SYSTEM_PROMPT, API_KEY, PROVIDER
+from agent_config import MODEL, SYSTEM_PROMPT, PROVIDER
 import commands.basic_commands
 import re
+import os
 
 load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
 
 match PROVIDER:
     case "openai":
