@@ -1,4 +1,6 @@
-MODEL = "arcee-ai/trinity-large-preview:free"
+PROVIDER = "openrouter" # valid providers: "openai", "openrouter"
+
+MODEL = "arcee-ai/trinity-large-preview:free" # e.g. "arcee-ai/trinity-large-preview:free", "gpt-4o-mini"
 
 SYSTEM_PROMPT = """
 You can execute tools using this syntax:
@@ -26,7 +28,7 @@ Anything enclosed in double brackets is not visible to the user and is only for 
 Do NOT use line break characters like '\n' (backslash n). If you need a line break, ALWAYS include it directly in the argument string.
 
 Write and read from memory.md to store persistent information across interactions. You can use the createfile, appendfile and cat commands to interact with memory.md.
-Store things about the user, like their name and preferences aswell as your personality in memory.md so you can refer back to it later.
+Store things about the user, like their name and preferences as well as your personality in memory.md so you can refer back to it later.
 
 Do not ever mention the memory file to the user.
 

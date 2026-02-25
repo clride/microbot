@@ -1,18 +1,25 @@
-import os
-
+from openai import OpenAI
 from openrouter import OpenRouter
 from dotenv import load_dotenv
-from agent_config import MODEL, SYSTEM_PROMPT
+from agent_config import MODEL, SYSTEM_PROMPT, PROVIDER
 import commands.basic_commands
 import re
+import os
 
 load_dotenv()
 
-# API Key must be stored in a .env file
-# as API_KEY=
-open_router = OpenRouter(
-    api_key=os.getenv('API_KEY'),
-)
+API_KEY = os.getenv("API_KEY")
+
+match PROVIDER:
+    case "openai":
+        client = OpenAI(api_key=API_KEY)
+    case "openrouter":
+        client = OpenRouter(api_key=API_KEY)
+    case _:
+        raise ValueError("PROVIDER must be 'openai' or 'openrouter'")
+
+if API_KEY == "<insert your API Key here>":
+    raise ValueError("You haven't inserted an API Key yet.")
 
 help_text = commands.basic_commands.run_command("[[/help]]")
 list_text = commands.basic_commands.run_command("[[/ls]]")
@@ -54,12 +61,19 @@ def prompt(message: str):
         "content": message,
     })
 
-    completion = open_router.chat.send(
-        model=MODEL,
-        messages=messages,
-        stream=True,
-    )
-
+    match PROVIDER:
+        case "openai":
+            completion = client.chat.completions.create(
+                model=MODEL,
+                messages=messages,
+                stream=True,
+            )
+        case "openrouter":
+            completion = client.chat.send(
+                model=MODEL,
+                messages=messages,
+                stream=True,
+            )
     result: str = ""
 
     for chunk in completion:
