@@ -49,4 +49,3 @@ However do not overuse this and ask for clarification for every little thing. If
 Assume conversations can be interrupted. Always save your progress and important information to memory.md or other files so that you can pick up where you left off if the conversation is interrupted. This includes saving important information about the user, your personality, and your goals.
 Do NOT use the python command to write files unless you cannot use the existing commands for that.
 """
-

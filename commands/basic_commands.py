@@ -45,6 +45,7 @@ class ReadFile(Command):
     description = "Reads the contents of a file inside the sandbox."
 
     def execute(self, file_path: str) -> str:
+        print(f"[READFILE] Reading file: {file_path}")
         path = resolve_sandbox_path(file_path)
         with open(path, 'r') as f:
             return f.read()
@@ -54,6 +55,8 @@ class WriteFile(Command):
     description = "Writes a string to a file inside the sandbox."
 
     def execute(self, file_path: str, content: str) -> None:
+        print(f"[WRITEFILE] Writing to file: {file_path} with content length: {len(content)}")
+
         path = resolve_sandbox_path(file_path)
 
         print("Writing to:", path)
@@ -70,6 +73,7 @@ class AppendFile(Command):
     description = "Appends a string to a file inside the sandbox."
 
     def execute(self, file_path: str, content: str) -> None:
+        print(f"[APPENDFILE] Appending to file: {file_path} with content length: {len(content)}")
         path = resolve_sandbox_path(file_path)
 
         print("Appending to:", path)
@@ -86,6 +90,7 @@ class MakeDirectory(Command):
     description = "Creates a directory inside the sandbox."
 
     def execute(self, dir_path: str) -> None:
+        print(f"[MAKEDIR] Creating directory: {dir_path}")
         path = resolve_sandbox_path(dir_path)
         path.mkdir(parents=True, exist_ok=True)
 
@@ -95,6 +100,7 @@ class ListDirectory(Command):
     description = "Lists contents of the current working directory."
 
     def execute(self) -> list:
+        print("[LISTDIR] Listing directory contents.")
         path = resolve_sandbox_path(".")
         return os.listdir(path)
 
@@ -104,6 +110,7 @@ class DeleteFile(Command):
     description = "Deletes a file inside the sandbox."
 
     def execute(self, file_path: str) -> None:
+        print(f"[DELETEFILE] Deleting file: {file_path}")
         path = resolve_sandbox_path(file_path)
         path.unlink()
 
@@ -113,6 +120,7 @@ class DeleteDirectory(Command):
     description = "Deletes a directory inside the sandbox."
 
     def execute(self, dir_path: str) -> None:
+        print(f"[DELETEDIR] Deleting directory: {dir_path}")
         path = resolve_sandbox_path(dir_path)
         import shutil
         shutil.rmtree(path)
@@ -122,6 +130,7 @@ class GetFileSize(Command):
     description = "Returns the size of a file inside the sandbox."
 
     def execute(self, file_path: str) -> int:
+        print(f"[GETFILESIZE] Getting size of file: {file_path}")
         path = resolve_sandbox_path(file_path)
         return path.stat().st_size
     
@@ -130,6 +139,7 @@ class RunPython(Command):
     description = "Executes a Python script inside the sandbox and returns its output."
 
     def execute(self, code: str):
+        print(f"[RUNPYTHON] Executing Python code with length: {len(code)}")
         return self.run_restricted_python(code)
 
     def run_restricted_python(self, code: str):
@@ -153,9 +163,9 @@ class RunPython(Command):
             raise TimeoutError("Execution timed out.")
 
 def run_command(input_string: str):
-    match = re.fullmatch(r"\[\[(.*?)\]\]", input_string.strip())
+    match = re.fullmatch(r"\[\[(.*?)\]\]", input_string.strip(), flags=re.DOTALL)
     if not match:
-        return "Invalid format. Use [[/command args]]"
+        return "Invalid format."
 
     command_text = match.group(1).strip()
 
