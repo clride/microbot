@@ -31,7 +31,7 @@ COMMAND_PATTERN = r"\[\[(.*?)\]\]"
 
 
 def execute_and_embed_commands(text: str):
-    matches = re.findall(COMMAND_PATTERN, text)
+    matches = re.findall(COMMAND_PATTERN, text, re.DOTALL)
     updated_text = text
 
     output = ""
@@ -76,6 +76,8 @@ def prompt(message: str):
         "role": "assistant",
         "content": result,
     })
+
+    print("[Debug] Command Count: " + str(count))
 
     if count > 0:
         print("\n--- Updated With Command Results Embedded ---\n")
