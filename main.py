@@ -19,7 +19,12 @@ list_text = commands.basic_commands.run_command("[[/ls]]")
 file_text = commands.basic_commands.run_command("[[/cat memory.md]]")
 
 messages = [
-    {"role": "system", "content": SYSTEM_PROMPT + "\n\n" + help_text + "\n\n" + "Files: \n".join(list_text) + "\nMemory.md: \n" + file_text}
+    {
+    "role": "system", "content": 
+        SYSTEM_PROMPT + "\n\n" + help_text + "\n\n" + 
+        "Files: \n".join(list_text) + "\n" +
+        "Memory.md: \n" + file_text
+     }
 ]
 
 COMMAND_PATTERN = r"\[\[(.*?)\]\]"
