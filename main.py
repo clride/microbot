@@ -8,7 +8,8 @@ import re
 
 load_dotenv()
 
-# Initialize client
+# API Key must be stored in a .env file
+# as API_KEY=
 open_router = OpenRouter(
     api_key=os.getenv('API_KEY'),
 )
