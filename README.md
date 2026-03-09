@@ -4,9 +4,9 @@ without complications. It has no internet access and a restricted python runtime
 sits at a few hundred lines of code.
 
 ## How to use
--Ideally set up an LXC or Docker Container
--Install the pip requirements: ```pip install -r pip.txt```
--Choose a model provider in ```agent_config.py```
--Paste your API Token into a ```.env``` file: ```API_KEY=YOUR_KEY_HERE```
--Run the program with ```python3 main.py```
--Chat with microbot, observe how it interacts with your system and runs commands.
+- Ideally set up an LXC or Docker Container
+- Install the pip requirements: ```pip install -r pip.txt```
+- Choose a model provider in ```agent_config.py```
+- Paste your API Token into a ```.env``` file: ```API_KEY=YOUR_KEY_HERE```
+- Run the program with ```python3 main.py```
+- Chat with microbot, observe how it interacts with your system and runs commands.
