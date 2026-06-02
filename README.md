@@ -1,5 +1,5 @@
 # Microbot: tiny Agent
-Microbot is a tiny agentic AI tool that can run with Openrouter and OpenAI. It has access to simple commands so it can do everything it needs to
+Microbot is a tiny AI tool that can run with Openrouter and OpenAI. It has access to simple commands so it can do everything it needs to
 without complications while being easy to observe and monitor. The entire implementation sits at a few hundred lines of code.
 Microbot is mostly a learning project and is not really practical.
 
